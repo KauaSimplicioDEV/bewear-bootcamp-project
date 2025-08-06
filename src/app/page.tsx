@@ -1,3 +1,10 @@
-export default function Home() {
-  return <div></div>;
-}
+import { Header } from "@/components/common/header";
+
+const Home = () => {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+};
+export default Home;
