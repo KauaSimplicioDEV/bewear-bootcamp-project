@@ -24,7 +24,7 @@ export const userTable = pgTable("user", {
     .notNull(),
 });
 
-export const session = pgTable("session", {
+export const sessionTable = pgTable("session", {
   id: text("id").primaryKey(),
   expiresAt: timestamp("expires_at").notNull(),
   token: text("token").notNull().unique(),
@@ -37,7 +37,7 @@ export const session = pgTable("session", {
     .references(() => userTable.id, { onDelete: "cascade" }), //se o usuário for deletado, a sessão vinculada a ele também será
 });
 
-export const account = pgTable("account", {
+export const accountTable = pgTable("account", {
   id: text("id").primaryKey(),
   accountId: text("account_id").notNull(),
   providerId: text("provider_id").notNull(),
