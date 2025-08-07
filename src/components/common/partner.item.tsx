@@ -43,7 +43,7 @@ const PartnerItem = () => {
       <div className="flex overflow-x-scroll gap-6 w-full">
         {cardPartner.map((card, index) => (
           <div key={index} className="">
-            <div className="px-6 py-5 gap-2 flex justify-center items-center border rounded-3xl">
+            <div className="p-6 gap-2 flex justify-center items-center border rounded-3xl">
               {card.icon}
             </div>
             <div className="flex truncate justify-center mt-3 font-semibold text-sm">
