@@ -1,6 +1,7 @@
 import CategorySelector from "@/components/common/category-selector";
 import Footer from "@/components/common/footer";
 import { Header } from "@/components/common/header";
+import PartnerList from "@/components/common/partner-list";
 import ProductList from "@/components/common/product-list";
 import { db } from "@/db";
 import { productTable } from "@/db/schema";
@@ -34,6 +35,10 @@ const Home = async () => {
             sizes="100vw"
             className="w-full h-auto"
           />
+        </div>
+
+        <div>
+          <PartnerList title="Marcas Parceiras" />
         </div>
 
         <ProductList products={products} title="Mais vendidos" />
