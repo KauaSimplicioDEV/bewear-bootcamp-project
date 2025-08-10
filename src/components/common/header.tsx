@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
+import Cart from "@/app/product-variant/[slug]/components/cart";
 import { authClient } from "@/lib/auth-client";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
@@ -27,7 +28,7 @@ export const Header = () => {
           height={26.14}
         />
       </Link>
-      <div className="flex items-center">
+      <div className="flex items-center gap-3">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
@@ -83,6 +84,7 @@ export const Header = () => {
             </div>
           </SheetContent>
         </Sheet>
+        <Cart />
       </div>
     </header>
   );

@@ -76,7 +76,7 @@ const ProductVariantPage = async ({ params }: ProductVariantPageProps) => {
 
         <div className="flex flex-col px-5 space-y-4">
           <Button className="rounded-full" size={"lg"} variant={"outline"}>
-            Adicionar ao carrinho
+            Adicionar à sacola
           </Button>
           <Button className="rounded-full" size={"lg"}>
             Comprar agora
