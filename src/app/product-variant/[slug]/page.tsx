@@ -1,12 +1,11 @@
-import QuantitySelector from "./components/quantity-selector";
+import ProductActions from "./components/product-actions";
 import VariantSelector from "./components/variant-selector";
 import Footer from "@/components/common/footer";
 import { Header } from "@/components/common/header";
 import ProductList from "@/components/common/product-list";
-import { Button } from "@/components/ui/button";
 import { db } from "@/db";
 import { productTable, productVariantTable } from "@/db/schema";
-import { formatCentstoBRL } from "@/helpers/money";
+import { formatCentsToBRL } from "@/helpers/money";
 import { eq } from "drizzle-orm";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -66,22 +65,11 @@ const ProductVariantPage = async ({ params }: ProductVariantPageProps) => {
             {productVariant.name}
           </h3>
           <h3 className="text-lg font-semibold">
-            {formatCentstoBRL(productVariant.priceInCents)}
+            {formatCentsToBRL(productVariant.priceInCents)}
           </h3>
         </div>
 
-        <div className="px-5">
-          <QuantitySelector />
-        </div>
-
-        <div className="flex flex-col px-5 space-y-4">
-          <Button className="rounded-full" size={"lg"} variant={"outline"}>
-            Adicionar à sacola
-          </Button>
-          <Button className="rounded-full" size={"lg"}>
-            Comprar agora
-          </Button>
-        </div>
+        <ProductActions productVariantId={productVariant.id} />
         <div className="px-5">
           <p className="text-sm">{productVariant.product.description}</p>
         </div>

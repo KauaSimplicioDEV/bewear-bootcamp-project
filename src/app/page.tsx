@@ -1,7 +1,6 @@
 import CategorySelector from "@/components/common/category-selector";
 import Footer from "@/components/common/footer";
 import { Header } from "@/components/common/header";
-import PartnerList from "@/components/common/partner-list";
 import ProductList from "@/components/common/product-list";
 import { db } from "@/db";
 import { productTable } from "@/db/schema";
@@ -23,7 +22,7 @@ const Home = async () => {
   const categories = await db.query.categoryTable.findMany({});
 
   return (
-    <div>
+    <>
       <Header />
       <div className="space-y-6">
         <div className="px-5">
@@ -33,12 +32,8 @@ const Home = async () => {
             height={0}
             width={0}
             sizes="100vw"
-            className="w-full h-auto"
+            className="h-auto w-full"
           />
-        </div>
-
-        <div>
-          <PartnerList title="Marcas Parceiras" />
         </div>
 
         <ProductList products={products} title="Mais vendidos" />
@@ -54,13 +49,15 @@ const Home = async () => {
             height={0}
             width={0}
             sizes="100vw"
-            className="w-full h-auto"
+            className="h-auto w-full"
           />
         </div>
+
         <ProductList products={newlyCreatedProducts} title="Novos produtos" />
         <Footer />
       </div>
-    </div>
+    </>
   );
 };
+
 export default Home;

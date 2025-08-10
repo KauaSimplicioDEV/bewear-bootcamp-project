@@ -1,5 +1,5 @@
 import { productTable, productVariantTable } from "@/db/schema";
-import { formatCentstoBRL } from "@/helpers/money";
+import { formatCentsToBRL } from "@/helpers/money";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,7 +37,7 @@ const ProductItem = ({ product, textContainerClassname }: ProductItemProps) => {
           {product.description}
         </p>
         <p className="truncate text-sm font-semibold">
-          {formatCentstoBRL(firtsVarient.priceInCents)}
+          {formatCentsToBRL(firtsVarient.priceInCents)}
         </p>
       </div>
     </Link>
