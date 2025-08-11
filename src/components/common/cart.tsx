@@ -10,17 +10,14 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import CartItem from "./cart-item";
-import { getCart } from "@/actions/get-cart";
 import { Button } from "@/components/ui/button";
 import { formatCentsToBRL } from "@/helpers/money";
-import { useQuery } from "@tanstack/react-query";
+import { useCart } from "@/hooks/queries/use-cart";
 import { ShoppingBasketIcon } from "lucide-react";
+import Link from "next/link";
 
 export const Cart = () => {
-  const { data: cart } = useQuery({
-    queryKey: ["cart"],
-    queryFn: () => getCart(),
-  });
+  const { data: cart } = useCart();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -78,7 +75,9 @@ export const Cart = () => {
                 <p>{formatCentsToBRL(cart?.totalPriceInCents ?? 0)}</p>
               </div>
 
-              <Button className="mt-5 rounded-full">Finalizar compra</Button>
+              <Button className="mt-5 rounded-full">
+                <Link href={"/cart/identification"}>Finalizar compra</Link>
+              </Button>
             </div>
           )}
         </div>
