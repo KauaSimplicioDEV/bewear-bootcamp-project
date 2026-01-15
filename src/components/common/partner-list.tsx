@@ -9,8 +9,10 @@ interface ProductListProps {
 const PartnerList = ({ title }: ProductListProps) => {
   return (
     <div className="space-y-6">
-      <h3 className="font-semibold px-5">{title}</h3>
-      <div className="flex w-full gap-4 overflow-x-auto px-5 [&::-webkit-scrollbar]:hidden">
+      <div className="container mx-auto px-5">
+        <h3 className="text-xl md:text-2xl font-semibold">{title}</h3>
+      </div>
+      <div className="container mx-auto px-5">
         <PartnerItem />
       </div>
     </div>

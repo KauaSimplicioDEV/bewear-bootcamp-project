@@ -39,10 +39,10 @@ const cardPartner = [
 
 const PartnerItem = () => {
   return (
-    <div>
-      <div className="flex overflow-x-scroll gap-6 w-full">
+    <div className="w-full">
+      <div className="flex overflow-x-auto gap-4 md:gap-6 w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:overflow-x-visible md:grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
         {cardPartner.map((card, index) => (
-          <div key={index} className="">
+          <div key={index} className="flex-shrink-0 md:flex-shrink">
             <div className="p-6 gap-2 flex justify-center items-center border rounded-3xl">
               {card.icon}
             </div>

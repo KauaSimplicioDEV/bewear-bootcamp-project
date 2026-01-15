@@ -114,12 +114,22 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    overflow-x: hidden;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-poppins);
+    overflow-x: hidden;
   }
 }
 
-.center-nav {
-  width: 80%;
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
 }

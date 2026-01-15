@@ -1,6 +1,7 @@
 import CategorySelector from "@/components/common/category-selector";
 import Footer from "@/components/common/footer";
 import { Header } from "@/components/common/header";
+import PartnerList from "@/components/common/partner-list";
 import ProductList from "@/components/common/product-list";
 import { db } from "@/db";
 import { productTable } from "@/db/schema";
@@ -25,17 +26,19 @@ const Home = async () => {
     <>
       <Header />
       <main className="flex-1">
-        <div className="mx-auto mb-8 space-y-8 md:space-y-12 center-nav">
-          <div className="container px-5 mx-auto md:flex md:justify-center">
+        <div className="space-y-8 md:space-y-12">
+          <div className="container px-5 mx-auto">
             <Image
               src="/bewear-banner01.svg"
               alt="Leve uma vida com estilo"
               height={0}
               width={0}
               sizes="100vw"
-              className="w-full h-auto rounded-lg md:rounded-xl md:hidden"
+              className="w-full h-auto rounded-lg md:rounded-xl"
             />
           </div>
+
+          <PartnerList title="Parceiros" />
 
           <ProductList products={products} title="Mais vendidos" />
 
