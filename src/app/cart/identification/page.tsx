@@ -44,8 +44,11 @@ const IdentificationPage = async () => {
     <>
       <Header />
       <main className="flex-1">
-        <div className="container mx-auto px-5 py-6 md:py-8 max-w-4xl">
-          <Addresses />
+        <div className="container px-5 py-6 mx-auto max-w-4xl md:py-8">
+          <Addresses
+            savedAddresses={shippingAddresses}
+            selectedAddressId={cart.shippingAddressId}
+          />
         </div>
       </main>
       <Footer />

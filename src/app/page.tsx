@@ -26,7 +26,7 @@ const Home = async () => {
     <>
       <Header />
       <main className="flex-1">
-        <div className="space-y-8 md:space-y-12">
+        <div className="py-8 space-y-8 md:space-y-12">
           <div className="container px-5 mx-auto">
             <Image
               src="/bewear-banner01.svg"
