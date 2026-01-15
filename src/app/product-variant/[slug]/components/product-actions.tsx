@@ -21,31 +21,29 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
   };
 
   return (
-    <>
-      <div className="px-5">
-        <div className="space-y-4">
-          <h3 className="font-medium">Quantidade</h3>
-          <div className="flex w-[100px] items-center justify-between rounded-lg border">
-            <Button size="icon" variant="ghost" onClick={handleDecrement}>
-              <MinusIcon />
-            </Button>
-            <p>{quantity}</p>
-            <Button size="icon" variant="ghost" onClick={handleIncrement}>
-              <PlusIcon />
-            </Button>
-          </div>
+    <div className="space-y-6">
+      <div className="space-y-4">
+        <h3 className="text-base md:text-lg font-medium">Quantidade</h3>
+        <div className="flex w-[120px] md:w-[140px] items-center justify-between rounded-lg border p-2">
+          <Button size="icon" variant="ghost" onClick={handleDecrement} className="h-8 w-8">
+            <MinusIcon className="h-4 w-4" />
+          </Button>
+          <p className="text-base md:text-lg font-medium">{quantity}</p>
+          <Button size="icon" variant="ghost" onClick={handleIncrement} className="h-8 w-8">
+            <PlusIcon className="h-4 w-4" />
+          </Button>
         </div>
       </div>
-      <div className="flex flex-col space-y-4 px-5">
+      <div className="flex flex-col md:flex-row gap-4">
         <AddToCartButton
           productVariantId={productVariantId}
           quantity={quantity}
         />
-        <Button className="rounded-full" size="lg">
+        <Button className="rounded-full w-full md:w-auto" size="lg">
           Comprar agora
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 

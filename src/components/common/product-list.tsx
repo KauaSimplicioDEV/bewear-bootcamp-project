@@ -13,11 +13,15 @@ interface ProductListProps {
 const ProductList = ({ title, products }: ProductListProps) => {
   return (
     <div className="space-y-6">
-      <h3 className="font-semibold px-5">{title}</h3>
-      <div className="flex w-full gap-4 overflow-x-auto px-5 [&::-webkit-scrollbar]:hidden">
-        {products.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
+      <div className="container mx-auto px-5">
+        <h3 className="text-xl md:text-2xl font-semibold">{title}</h3>
+      </div>
+      <div className="container mx-auto px-5">
+        <div className="flex w-full gap-4 overflow-x-auto md:overflow-x-visible md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:gap-6 [&::-webkit-scrollbar]:hidden">
+          {products.map((product) => (
+            <ProductItem key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </div>
   );

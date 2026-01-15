@@ -21,9 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className={`${poppins.variable} ${poppins.variable} antialiased`}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <div className="min-h-screen flex flex-col">
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </div>
         <Toaster />
       </body>
     </html>

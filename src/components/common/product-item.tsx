@@ -16,27 +16,29 @@ const ProductItem = ({ product, textContainerClassname }: ProductItemProps) => {
   return (
     <Link
       href={`/product-variant/${firtsVarient.slug}`}
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-3 md:gap-4 group"
     >
-      <Image
-        src={firtsVarient.imageUrl}
-        alt={firtsVarient.name}
-        sizes="100vw"
-        width={0}
-        height={0}
-        className="h-auto w-full rounded-3xl"
-      />
+      <div className="relative overflow-hidden rounded-3xl">
+        <Image
+          src={firtsVarient.imageUrl}
+          alt={firtsVarient.name}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, (max-width: 1536px) 25vw, 20vw"
+          width={0}
+          height={0}
+          className="h-auto w-full rounded-3xl transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
       <div
         className={cn(
-          "flex max-w-[200px] flex-col gap-1",
-          textContainerClassname,
+          "flex flex-col gap-1 md:gap-2",
+          textContainerClassname || "max-w-[200px] md:max-w-none",
         )}
       >
-        <p className="truncate text-sm font-medium">{product.name}</p>
-        <p className="truncate text-xs text-muted-foreground font-medium">
+        <p className="truncate text-sm md:text-base font-medium">{product.name}</p>
+        <p className="truncate text-xs md:text-sm text-muted-foreground font-medium">
           {product.description}
         </p>
-        <p className="truncate text-sm font-semibold">
+        <p className="truncate text-sm md:text-base font-semibold">
           {formatCentsToBRL(firtsVarient.priceInCents)}
         </p>
       </div>

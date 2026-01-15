@@ -24,38 +24,38 @@ const Home = async () => {
   return (
     <>
       <Header />
-      <div className="space-y-6">
-        <div className="px-5">
-          <Image
-            src="/banner01.png"
-            alt="Leve uma vida com estilo"
-            height={0}
-            width={0}
-            sizes="100vw"
-            className="h-auto w-full"
-          />
-        </div>
+      <main className="flex-1">
+        <div className="mx-auto mb-8 space-y-8 md:space-y-12 center-nav">
+          <div className="container px-5 mx-auto md:flex md:justify-center">
+            <Image
+              src="/bewear-banner01.svg"
+              alt="Leve uma vida com estilo"
+              height={0}
+              width={0}
+              sizes="100vw"
+              className="w-full h-auto rounded-lg md:rounded-xl md:hidden"
+            />
+          </div>
 
-        <ProductList products={products} title="Mais vendidos" />
+          <ProductList products={products} title="Mais vendidos" />
 
-        <div className="px-5">
           <CategorySelector categories={categories} />
-        </div>
 
-        <div className="px-5">
-          <Image
-            src="/banner02.png"
-            alt="Leve uma vida com estilo"
-            height={0}
-            width={0}
-            sizes="100vw"
-            className="h-auto w-full"
-          />
-        </div>
+          <div className="container px-5 mx-auto">
+            <Image
+              src="/bewear-banner02.svg"
+              alt="Leve uma vida com estilo"
+              height={0}
+              width={0}
+              sizes="100vw"
+              className="w-full h-auto rounded-lg md:rounded-xl md:hidden"
+            />
+          </div>
 
-        <ProductList products={newlyCreatedProducts} title="Novos produtos" />
-        <Footer />
-      </div>
+          <ProductList products={newlyCreatedProducts} title="Novos produtos" />
+        </div>
+      </main>
+      <Footer />
     </>
   );
 };
