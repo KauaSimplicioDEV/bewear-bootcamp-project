@@ -16,10 +16,31 @@ import { formatCentsToBRL } from "@/helpers/money";
 import { useCart } from "@/hooks/queries/use-cart";
 import { ShoppingBasketIcon } from "lucide-react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { useState } from "react";
 
 export const Cart = () => {
   const { data: cart } = useCart();
   const totalItems = cart?.items.reduce((acc, item) => acc + item.quantity, 0) || 0;
+  const { data: session } = authClient.useSession();
+  const router = useRouter();
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
+
+  const handleCheckout = (e: React.MouseEvent) => {
+    if (!session?.user) {
+      e.preventDefault();
+      setShowLoginDialog(true);
+    }
+  };
   
   return (
     <Sheet>
@@ -85,13 +106,51 @@ export const Cart = () => {
                 <p>{formatCentsToBRL(cart?.totalPriceInCents ?? 0)}</p>
               </div>
 
-              <Button className="mt-2 md:mt-4 rounded-full w-full">
-                <Link href={"/cart/identification"} className="w-full">Finalizar compra</Link>
+              <Button 
+                className="mt-2 md:mt-4 rounded-full w-full"
+                onClick={handleCheckout}
+                asChild={session?.user ? true : false}
+              >
+                {session?.user ? (
+                  <Link href={"/cart/identification"}>Finalizar compra</Link>
+                ) : (
+                  <span>Finalizar compra</span>
+                )}
               </Button>
             </div>
           )}
         </div>
       </SheetContent>
+
+      <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Login necessário</DialogTitle>
+            <DialogDescription className="text-base pt-2">
+              Para finalizar sua compra, você precisa estar logado. 
+              Por favor, faça login ou crie uma conta para continuar.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex-col sm:flex-row gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setShowLoginDialog(false)}
+              className="w-full sm:w-auto"
+            >
+              Cancelar
+            </Button>
+            <Button
+              onClick={() => {
+                setShowLoginDialog(false);
+                router.push("/authentication");
+              }}
+              className="w-full sm:w-auto rounded-full"
+            >
+              Ir para Login/Cadastro
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Sheet>
   );
 };
