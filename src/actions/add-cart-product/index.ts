@@ -8,18 +8,30 @@ import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 
 export const addProductToCart = async (data: AddProductToCartSchema) => {
-  addProductToCartSchema.parse(data);
+  try {
+    addProductToCartSchema.parse(data);
+  } catch (error) {
+    console.error("Validation error:", error);
+    console.error("Data received:", data);
+    throw new Error("Dados inválidos");
+  }
+  
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   if (!session?.user) {
     throw new Error("Unauthorized");
   }
+  
+  console.log("Adding to cart - ProductVariantId:", data.productVariantId);
+  
   const productVariant = await db.query.productVariantTable.findFirst({
     where: (productVariant, { eq }) =>
       eq(productVariant.id, data.productVariantId),
   });
+  
   if (!productVariant) {
+    console.error("Product variant not found:", data.productVariantId);
     throw new Error("Product variant not found");
   }
   const cart = await db.query.cartTable.findFirst({

@@ -3,14 +3,6 @@ import { categoryTable, productTable, productVariantTable } from "./schema";
 import crypto from "crypto";
 
 const productImages = {
-  Mochila: {
-    Preta: [
-      "https://d4lgxe9bm8juw.cloudfront.net/products/Acesso%CC%81rios/1/78f9fa3b_c793_472a_b183_e32495033da2.jpg",
-    ],
-    Branca: [
-      "https://d4lgxe9bm8juw.cloudfront.net/products/Acesso%CC%81rios/1/dacd9927_7287_4b14_a94f_b3f18c9c4d15.jpg",
-    ],
-  },
   "Meia Alta": {
     Branca: [
       "https://d4lgxe9bm8juw.cloudfront.net/products/Acesso%CC%81rios/2/52c14d96_66fb_4b5e_b8a9_6b6cf21fb448.jpg",
@@ -276,16 +268,6 @@ const categories = [
 
 const products = [
   // Acessórios
-  {
-    name: "Mochila",
-    description:
-      "Mochila resistente e confortável, ideal para o dia a dia e viagens.",
-    categoryName: "Acessórios",
-    variants: [
-      { color: "Preta", price: 12999 },
-      { color: "Branca", price: 12999 },
-    ],
-  },
   {
     name: "Meia Alta",
     description: "Meia alta de algodão, confortável e durável.",

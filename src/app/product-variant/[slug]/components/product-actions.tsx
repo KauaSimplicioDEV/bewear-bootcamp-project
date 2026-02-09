@@ -17,6 +17,8 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
   const queryClient = useQueryClient();
+  
+  console.log("ProductActions - productVariantId:", productVariantId);
 
   const { mutate: buyNow, isPending: isBuyingNow } = useMutation({
     mutationKey: ["buyNow", productVariantId, quantity],
@@ -28,6 +30,12 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: getUseCartQueryKey() });
       router.push("/cart/identification");
+    },
+    onError: (error: Error) => {
+      console.error("Erro ao comprar agora:", error);
+      if (error.message === "Unauthorized") {
+        router.push("/authentication");
+      }
     },
   });
 
