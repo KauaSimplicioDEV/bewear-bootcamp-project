@@ -11,6 +11,7 @@ import {
 } from "../ui/sheet";
 import CartItem from "./cart-item";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { formatCentsToBRL } from "@/helpers/money";
 import { useCart } from "@/hooks/queries/use-cart";
 import { ShoppingBasketIcon } from "lucide-react";
@@ -18,11 +19,20 @@ import Link from "next/link";
 
 export const Cart = () => {
   const { data: cart } = useCart();
+  const totalItems = cart?.items.reduce((acc, item) => acc + item.quantity, 0) || 0;
+  
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" className="relative">
           <ShoppingBasketIcon />
+          {totalItems > 0 && (
+            <Badge 
+              className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
+            >
+              {totalItems}
+            </Badge>
+          )}
         </Button>
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-lg">

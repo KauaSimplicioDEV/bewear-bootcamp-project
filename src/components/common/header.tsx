@@ -19,23 +19,23 @@ export const Header = () => {
   const { data: session } = authClient.useSession();
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex justify-between items-center p-4 mx-auto md:p-6">
+      <div className="container flex justify-between items-center p-4 mx-auto md:p-6 lg:px-8 xl:px-12 2xl:px-16">
         <Link href="/">
           <Image
             src="/logo.svg"
             alt="BEWEAR"
             width={100}
             height={26.14}
-            className="w-24 h-auto md:w-32"
+            className="w-24 h-auto md:w-32 lg:w-36 xl:w-40"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden gap-3 items-center md:flex">
+        <div className="hidden gap-3 items-center md:flex lg:gap-4 xl:gap-6">
           {session?.user ? (
             <>
-              <div className="flex gap-3 items-center">
-                <Avatar>
+              <div className="flex gap-3 items-center lg:gap-4">
+                <Avatar className="lg:w-12 lg:h-12">
                   <AvatarImage
                     src={session?.user?.image as string | undefined}
                   />
@@ -45,10 +45,10 @@ export const Header = () => {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <h3 className="text-sm font-semibold">
+                  <h3 className="text-sm font-semibold lg:text-base">
                     {session?.user?.name}
                   </h3>
-                  <span className="block text-xs text-muted-foreground">
+                  <span className="block text-xs text-muted-foreground lg:text-sm">
                     {session?.user?.email}
                   </span>
                 </div>
@@ -57,15 +57,16 @@ export const Header = () => {
                 variant="outline"
                 size="sm"
                 onClick={() => authClient.signOut()}
+                className="lg:h-10 lg:px-6 lg:text-base"
               >
-                <LogOutIcon className="mr-2 w-4 h-4" />
+                <LogOutIcon className="mr-2 w-4 h-4 lg:w-5 lg:h-5" />
                 Sair
               </Button>
             </>
           ) : (
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="lg:h-10 lg:px-6 lg:text-base">
               <Link href="/authentication">
-                <LogInIcon className="mr-2 w-4 h-4" />
+                <LogInIcon className="mr-2 w-4 h-4 lg:w-5 lg:h-5" />
                 Entrar
               </Link>
             </Button>

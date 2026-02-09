@@ -2,8 +2,12 @@
 
 import AddToCartButton from "./add-to-cart-button";
 import { Button } from "@/components/ui/button";
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { MinusIcon, PlusIcon, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { addProductToCart } from "@/actions/add-cart-product";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { getUseCartQueryKey } from "@/hooks/queries/use-cart";
+import { useRouter } from "next/navigation";
 
 interface ProductActionsProps {
   productVariantId: string;
@@ -11,6 +15,21 @@ interface ProductActionsProps {
 
 const ProductActions = ({ productVariantId }: ProductActionsProps) => {
   const [quantity, setQuantity] = useState(1);
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const { mutate: buyNow, isPending: isBuyingNow } = useMutation({
+    mutationKey: ["buyNow", productVariantId, quantity],
+    mutationFn: () =>
+      addProductToCart({
+        productVariantId,
+        quantity,
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: getUseCartQueryKey() });
+      router.push("/cart/identification");
+    },
+  });
 
   const handleDecrement = () => {
     setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
@@ -18,6 +37,10 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
 
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
+  };
+
+  const handleBuyNow = () => {
+    buyNow();
   };
 
   return (
@@ -39,7 +62,13 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
           productVariantId={productVariantId}
           quantity={quantity}
         />
-        <Button className="rounded-full w-full md:w-auto" size="lg">
+        <Button 
+          className="rounded-full w-full md:w-auto" 
+          size="lg"
+          onClick={handleBuyNow}
+          disabled={isBuyingNow}
+        >
+          {isBuyingNow && <Loader2 className="animate-spin mr-2 h-4 w-4" />}
           Comprar agora
         </Button>
       </div>

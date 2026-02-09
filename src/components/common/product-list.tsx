@@ -12,12 +12,12 @@ interface ProductListProps {
 
 const ProductList = ({ title, products }: ProductListProps) => {
   return (
-    <div className="space-y-6">
-      <div className="container px-5 mx-auto">
-        <h3 className="text-xl font-semibold md:text-2xl">{title}</h3>
+    <div className="space-y-6 lg:space-y-8">
+      <div className="container px-5 mx-auto lg:px-8 xl:px-12 2xl:px-16">
+        <h3 className="text-xl font-semibold md:text-2xl lg:text-3xl xl:text-4xl">{title}</h3>
       </div>
-      <div className="container px-5 mx-auto">
-        <div className="flex w-full gap-4 overflow-x-auto md:overflow-x-visible md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div className="container px-5 mx-auto lg:px-8 xl:px-12 2xl:px-16">
+        <div className="flex w-full gap-4 overflow-x-auto md:overflow-x-visible md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:gap-6 lg:gap-8 xl:gap-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {products.map((product) => (
             <ProductItem key={product.id} product={product} />
           ))}
