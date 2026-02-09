@@ -10,6 +10,8 @@ import { eq } from "drizzle-orm";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+export const dynamic = 'force-dynamic';
+
 interface ProductVariantPageProps {
   params: Promise<{ slug: string }>;
 }

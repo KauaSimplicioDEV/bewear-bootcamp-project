@@ -8,6 +8,9 @@ import { productTable } from "@/db/schema";
 import { desc } from "drizzle-orm";
 import Image from "next/image";
 
+// Forçar renderização dinâmica para evitar erros no build
+export const dynamic = 'force-dynamic';
+
 const Home = async () => {
   const products = await db.query.productTable.findMany({
     with: {
