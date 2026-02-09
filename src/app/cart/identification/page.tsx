@@ -38,10 +38,7 @@ const IdentificationPage = async () => {
   const shippingAddresses = await db.query.shippingAddressTable.findMany({
     where: eq(shippingAddressTable.userId, session.user.id),
   });
-  const cartTotalInCents = cart.items.reduce(
-    (acc, item) => acc + item.productVariant.priceInCents * item.quantity,
-    0,
-  );
+  
   return (
     <>
       <Header />
